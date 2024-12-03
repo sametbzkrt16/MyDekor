@@ -1,0 +1,542 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Kullanıcı.master.cs" Inherits="KoltukSatisMagazasi.Kullanıcı" %>
+
+<head>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <link href="StyleSheet1.css" rel="stylesheet" />
+    <style>
+        #truck {
+    position: relative;
+    width: 400px; /* Tırın genişliği */
+    height: 200px; /* Tırın yüksekliği */
+    background-image: url('truck-image.png'); /* Tır resminizi buraya ekleyin */
+    background-size: cover;
+}
+
+.truck-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.compartment {
+    width: 90px; /* Bölmelerin genişliği */
+    height: 90px; /* Bölmelerin yüksekliği */
+    background-color: lightgray; /* Bölmelerin rengi */
+    margin: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+        .auto-style2 {
+            width: 350px;
+            text-align: center;
+            background-color: #C0C0C0;
+            height: 40px;
+        }
+
+        .auto-style3 {
+            width: 343px;
+            height: auto; /* İçerik ile yüksekliği ayarlanır */
+            margin-right: 0px;
+            float: left; /* Sol tarafa yaslanır */
+        }
+
+        .auto-style5 {
+            height: 40px;
+            background-color: #FFFFFF;
+            width: 284px;
+        }
+
+        .auto-style6 {
+            font-size: small;
+            background-color: #CCCCCC;
+            width: 284px;
+        }
+
+        
+
+        #scrollToTop {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 100;
+            display: none;
+            background-color: #0094ff;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            font-size: 18px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #scrollToTop:hover {
+            background-color: #555;
+        }
+
+        .auto-style12 {
+            width: 1411px;
+            text-align: center;
+        }
+
+        .auto-style13 {
+            width: 300px;
+        }
+
+        /* Yeni div için stil */
+        .new-content {
+            margin-left: 20px; /* Sol menünün yanında olacak */
+            padding: 20px;
+            background-color: #e0e0e0;
+            width: 700px;
+            float: left; /* Menü ile yan yana hizalanacak */
+        }
+
+        /* Temizlik için clear: both */
+        .clearfix::after {
+            content: "";
+            clear: both;
+            display: table;
+        }
+
+        .slider {
+            position: relative;
+            width: 700px;
+            height: 400px;
+            overflow: hidden;
+            margin: 20px auto;
+        }
+
+        .slides {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+            width: 100%;
+        }
+
+        .slide-item {
+            width: 700px;
+            height: 400px;
+            object-fit: cover;
+        }
+
+        /* Butonların konumları */
+        .prev,
+        .next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            width: auto;
+            padding: 16px;
+            margin-top: -22px;
+            color: white;
+            background-color: rgba(0, 0, 0, 0.5);
+            border: none;
+            font-size: 18px;
+            border-radius: 0 3px 3px 0;
+            user-select: none;
+        }
+
+        .next {
+            right: 0;
+            border-radius: 3px 0 0 3px;
+        }
+
+        .prev {
+            left: 0;
+            border-radius: 3px 0 0 3px;
+        }
+
+        .auto-style17 {
+            width: 895px;
+            height: 585px;
+            float: left;
+            margin-left: 20px;
+            margin-right: auto;
+            margin-top: 0;
+            margin-bottom: 0;
+            padding: 20px;
+            background-color: #e0e0e0;
+        }
+        .auto-style19 {
+            float: left;
+            width: 220px;
+            height: 565px;
+            text-align: center;
+        }
+        vertical-slider {
+        display: flex;
+        flex-direction: column;
+        transition: transform 1s ease-in-out;
+    }
+
+    .slide {
+        height: 300px; /* Her slaytın yüksekliği */
+        width: 100%; /* Div'i tam olarak kaplasın */
+        display: flex;
+        justify-content: center; /* Resmi ortala */
+        align-items: center;
+    }
+
+    .slide-image {
+        width: 100%; /* Genişlik div'i kaplayacak şekilde */
+        height: 100%; /* Yükseklik div'i kaplayacak şekilde */
+        object-fit: cover; /* Resim boyutunu div'e uyarlar */
+    }
+        .auto-style20 {
+            width: 100%;
+            height: 74%;
+            object-fit: cover;
+            margin-right: 20px;
+        }
+        .auto-style21 {
+            width: 100%;
+       
+        }
+         #clock {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            font-size: 30px;
+            color: black;
+            background-color: #ff0000;
+            padding: 5px;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        #date {
+            position: fixed;
+            top: 60px;
+            right: 10px;
+            font-size: 25px;
+            color: black;
+            background-color: #FFFFFF;
+            padding: 5px;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .auto-style22 {
+            width: 74px;
+            height: 69px;
+        }
+        
+        .auto-style23 {
+            width: 44px;
+            height: 40px;
+        }
+        
+        .auto-style24 {
+            text-decoration: underline;
+        }
+        
+    </style>
+</head>
+
+<form id="form1" runat="server">
+   
+
+    <!-- Saat ve Tarih Gösterimi -->
+    <div id="clock"></div>
+    <div id="date"></div> <!-- Tarih için eklenen eleman -->
+   
+         <a href="https://wa.me/905555555555?text=Merhaba,%20ürün%20hakkında%20daha%20fazla%20bilgi%20almak%20istiyorum" target="_blank">
+    <img src="img/Adsız tasarım (1).png" alt="WhatsApp" class="auto-style22">
+</a>
+  <a href="tel:+905555555555?text=Merhaba,%20ürün%20hakkında%20daha%20fazla%20bilgi%20almak%20için%20arayınız!" style="position: absolute; top: 20px; left: 100px;">
+    <img src="img/Adsız tasarım (2).png" alt="Call" class="auto-style23">
+</a>
+
+    
+      <script>
+          function showTime() {
+              var date = new Date();
+              var h = date.getHours();
+              var m = date.getMinutes();
+              var s = date.getSeconds();
+
+              h = (h < 10) ? "0" + h : h;
+              m = (m < 10) ? "0" + m : m;
+              s = (s < 10) ? "0" + s : s;
+
+              var time = h + ":" + m + ":" + s;
+              document.getElementById("clock").innerText = time;
+
+              // Tarihi göster
+              var day = date.getDate();
+              var month = date.getMonth() + 1; // Ay 0'dan başlar
+              var year = date.getFullYear();
+              var currentDate = day + "/" + month + "/" + year;
+              document.getElementById("date").innerText = currentDate;
+
+              setTimeout(showTime, 1000);
+          }
+
+          showTime();
+    </script>
+    <!-- Menü ve Başlık Görselleri -->
+    <div class="auto-style12">
+        <asp:Image ID="Image1" runat="server" Height="224px" ImageUrl="~/img/dekor.png" Width="978px" />
+    </div>
+
+    <!-- Menü -->
+    <div>
+        <table class="auto-style1">
+            <tr>           
+                <td class="auto-style2"><a href="SignUp.aspx">Kayit</a></td>
+
+                <td class="auto-style2"><a href="AnaSayfa.aspx">ANASAYFA</a></td>
+                <td class="auto-style2"><a href="ürünler.aspx">ÜRÜNLER</a></td>
+                <td class="auto-style2"><a href="Hakkımızda.aspx">HAKKIMIZDA</a></td>
+                <td class="auto-style2"><a href="İletisim.aspx">İLETİŞİM</a></td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- Sol Menü İçerikleri -->
+    <div class="auto-style3">
+        <table class="auto-style13">
+            <tr>
+                <td class="auto-style5"></td>
+            </tr>
+            <tr>
+                <td class="auto-style6"><a href="chesKT.aspx">CHESTER KOLTUK TAKIMI</a></td>
+            </tr>
+            <table class="auto-style13">
+                <tr>
+                    <td class="auto-style5"></td>
+                </tr>
+
+                <tr>
+                    <td class="auto-style6"><a href="KoseKT.aspx">KÖŞE KOLTUK TAKIMI</a></td>
+                </tr>
+                <table class="auto-style13">
+                    <tr>
+                        <td class="auto-style5"></td>
+                    </tr>
+                    <tr>
+                        <td class="auto-style6"><a href="KanepeKT.aspx">KANEPE TAKIMI</a></td>
+                    </tr>
+                    <table class="auto-style13">
+                        <tr>
+                            <td class="auto-style5"></td>
+                        </tr>
+                        <tr>
+                            <td class="auto-style6"><a href="Berjer.aspx">BERJER</a></td>
+                        </tr>
+                        <table class="auto-style13">
+                            <tr>
+                                <td class="auto-style5"></td>
+                            </tr>
+                            <tr>
+                                <td class="auto-style6"><a href="Puf.aspx">PUF</a></td>
+                            </tr>
+                        </table>
+
+     <!-- Sepetiniz kısmı -->
+<div id="cart" style="position: fixed; top: 100px; right: 10px; background-color: #fff; padding: 10px; border: 1px solid #ccc; border-radius: 5px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); display: flex;">
+    <img src="img/sepet.png" alt="Sepet" style="height: 30px;" onclick="$('#sepet').toggle();" />
+    <span id="productCount" style="position: absolute; top: 5px; right: 5px; background: red; color: white; border-radius: 50%; padding: 2px 5px; font-size: small;">0</span>
+    <div id="sepet" style="display: none;">
+        <h2><strong>Sepetiniz</strong></h2>
+        <asp:Repeater ID="rptSepet" runat="server">
+            <ItemTemplate>
+                <%# Eval("UrunAdi") %> - <%# Eval("UrunFiyati", "{0:C}") %>
+                <asp:Button ID="btnSil" runat="server" Text="Sil" CommandArgument='<%# Eval("Index") %>' OnCommand="Sil_Click" />
+                <br />
+            </ItemTemplate>
+        </asp:Repeater>
+        <strong>
+            <asp:Label ID="lblToplamFiyat" runat="server" CssClass="auto-style24" />
+        </strong>
+<asp:Label ID="lblMesaj" runat="server" Text="" Visible="false" ForeColor="Red"></asp:Label>
+
+        <br />
+<asp:Button ID="btnSepetiSatinal" runat="server" Text="Sepeti Satın Al" OnClick="btnSepetiSatinal_Click" style="margin-top: 10px; padding: 5px 10px;" />
+    </div>
+</div>
+
+
+
+
+        </div>
+        <div></div>
+        <div></div>
+
+        <!-- Yeni Eklenen Div -->
+        <div class="auto-style17">
+            <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
+                <p>&nbsp;</p>
+            </asp:ContentPlaceHolder>
+        </div>
+    <!-- Yeni Eklenen Div - Sağ Taraf -->
+<!-- Sağ Taraf - Dikey Slider -->
+<div style="background-color: #f0f0f0; margin-left: 20px;" class="auto-style19">
+    <strong>BU</strong> <strong>HAFTANIN KAMPANYALI ÜRÜNÜ </strong>
+    
+
+    <div style="float: left; width: 200px; height: 300px; background-color: #f0f0f0; overflow: hidden;">
+        <div class="vertical-slider">
+            <div class="slide"><img src="img/armutatalanta.jpg" class="auto-style20" alt="Resim 1" /></div>
+            <div class="slide"><img src="img/atalanta.jpg" class="slide-image" alt="Resim 2" /></div>
+            <div class="slide"><img src="img/dekor.jpg" class="slide-image" alt="Resim 3" /></div>
+      
+    </div>
+</div>
+     <script>
+         let products = [];
+         let currentTruck = 0;
+
+         function addToCart(product) {
+             products.push(product);
+             updateTruckDisplay();
+         }
+
+         function updateTruckDisplay() {
+             const compartments = document.querySelectorAll('.compartment');
+             compartments.forEach(comp => comp.innerHTML = ''); // Tüm bölmeleri temizle
+
+             let index = 0;
+             products.forEach((product, i) => {
+                 if (i < 4) { // İlk tır için
+                     compartments[i].innerHTML = product; // Ürün adını ya da görselini yerleştir
+                 } else {
+                     currentTruck = 1; // İkinci tıra geç
+                     const secondTruck = document.querySelectorAll('.truck-container')[currentTruck];
+                     if (secondTruck) {
+                         secondTruck.innerHTML += `<div>${product}</div>`; // İkinci tıra ürün ekle
+                     }
+                 }
+             });
+         }
+    </script>
+
+    <script>
+
+        let cartItemCount = 0; // Sepetteki ürün sayısını tutacak değişken
+        let totalPrice = 0; // Sepetteki toplam fiyatı tutacak değişken
+
+        // Sepete ekleme işlemi
+        function addToCart(productName, productPrice) {
+            const sepet = document.getElementById('sepet');
+            const item = document.createElement('div');
+            item.classList.add('item'); // Her ürün için bir div oluştur
+            item.innerHTML = `${productName} - ${productPrice} <button onclick="removeFromCart(this)">Sil</button>`;
+            sepet.appendChild(item);
+
+            // Ürün sayısını ve toplam fiyatı güncelle
+            cartItemCount++;
+            totalPrice += parseFloat(productPrice.replace(/[^\d.-]/g, '')); // Fiyatı sayıya çevir
+            updateCartCount();
+            updateTotalPrice();
+        }
+
+        // Sepetten silme işlemi
+        function removeFromCart(button) {
+            const item = button.parentElement; // Butonun ait olduğu div'i al
+            const priceText = item.innerHTML.match(/-\s*\d+(\.\d{1,2})?/)[0]; // Fiyati bul
+            const itemPrice = parseFloat(priceText.replace(/[^\d.-]/g, '')); // Fiyatı sayıya çevir
+            totalPrice -= itemPrice; // Toplam fiyatı güncelle
+            item.remove(); // Div'i kaldır
+
+            // Ürün sayısını güncelle
+            cartItemCount--;
+            updateCartCount();
+            updateTotalPrice();
+        }
+
+        // Ürün sayısını güncelleme
+        function updateCartCount() {
+            const productCount = document.getElementById('productCount');
+            productCount.innerText = cartItemCount; // Ürün sayısını güncelle
+        }
+
+        // Toplam fiyatı güncelleme
+        function updateTotalPrice() {
+            const totalLabel = document.getElementById('lblToplamFiyat');
+            totalLabel.innerText = `Toplam: ${totalPrice.toFixed(2)} TL`; // Toplam fiyatı güncelle
+        }
+
+
+
+        const slider = document.querySelector('.vertical-slider');
+        const slides = document.querySelectorAll('.slide');
+        let index = 0;
+
+        function slideImages() {
+            index++;
+            if (index >= slides.length) {
+                index = 0; // Son slayttan sonra başa dön
+            }
+            slider.style.transform = `translateY(-${index * 300}px)`; // Her 300px kaydır, çünkü her slaytın yüksekliği 300px
+        }
+
+        setInterval(slideImages, 3000); // 3 saniyede bir slayt geçişi
+    </script>
+        <table class="auto-style21">
+    <tr>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>Armut Berjer<br />
+            SADECE 5000TL<br />
+            &quot;5 RENK SECENEĞİYLE&quot;</td>
+    </tr>
+</table>
+
+
+    
+    <br />
+    <br />
+
+</div>
+
+
+        <!-- Temizlik -->
+        <div class="clearfix"></div>
+        <!-- Yukarı çık butonu -->
+      
+    <button id="scrollToTop">↑     const slides = document.querySelectorAll('.slide');
+        <script>
+        let index = 0;
+
+        function slideImages() {
+            index++;
+            if (index >= slides.length) {
+                index = 0; // Son slayttan sonra başa dön
+            }
+            slider.style.transform = `translateY(-${index * 300}px)`; // Her 300px kaydır, çünkü her slaytın yüksekliği 300px
+        }
+
+        setInterval(slideImages, 3000); // 3 saniyede bir slayt geçişi
+    </script>
+
+</div>
+
+        <!-- Temizlik -->
+        <div class="clearfix"></div>
+        <!-- Yukarı çık butonu -->
+        <button id="scrollToTop">↑</button>
+        <script>
+            window.onscroll = function () { scrollFunction() };
+
+            function scrollFunction() {
+                var button = document.getElementById("scrollToTop");
+                if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+                    button.style.display = "block";
+                } else {
+                    button.style.display = "none";
+                }
+            }
+
+            document.getElementById("scrollToTop").addEventListener("click", function () {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+
+
+            });
+        </script>
+
+</form>
